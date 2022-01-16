@@ -12,29 +12,29 @@ public class MyService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+     return null;
     }
-    @Override
-    public void onCreate() {
-        Toast.makeText(this, "Service Créé",Toast.LENGTH_LONG).show();
-    }
+
     @Override
     public void onDestroy() {
 
         player.stop();
 
-        Toast.makeText(this, "Service détruit",Toast.LENGTH_LONG).show();
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "Service démmaré",Toast.LENGTH_LONG).show();
+        int result = super.onStartCommand(intent, flags, startId);
+
         if(intent.getAction()=="START") {
             String namefile = (String) intent.getExtras().get("chanson");
             int IDfichierAudio = getResources().getIdentifier(namefile, "raw", getPackageName());
             player = MediaPlayer.create(this, IDfichierAudio);
+
+            player.setLooping(true);
             player.start();
+
         }
-        return START_STICKY;
+        return result;
+
     }
 }

@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 public class MyPlayList extends AppCompatActivity {
 ListView mylist;
-    String songs[] = {"song1","song2","song3"};
+    String songs[] = {"Song1","Song2","Song3"};
 
 
     @Override
